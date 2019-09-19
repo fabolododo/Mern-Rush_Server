@@ -27,7 +27,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 // Test route
-app.use('/', (req, res) => {
+app.get('/', (req, res) => {
   res.send('API is running')
 })
 
