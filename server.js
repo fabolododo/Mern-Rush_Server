@@ -1,8 +1,8 @@
 const express = require('express');
 const connectDB = require('./config/db');
 const path = require('path');
-// const cors = require('cors');
-// const bodyParser = require("body-parser");
+const cors = require('cors');
+const bodyParser = require("body-parser");
 const app = express();
 
 // Connect Database
@@ -14,7 +14,7 @@ app.use(express.json({ extended: false }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-var allowedOrigins = ['http://localhost:8080','https://104.198.14.52', 'http://localhost:3000'];
+var allowedOrigins = ['http://localhost:8080','https://104.198.14.52', 'http://localhost:3000', 'https://rush-mern-fab.netlify.com'];
 app.use(cors({
     origin: function(origin, callback) {
         if (!origin)
@@ -37,7 +37,7 @@ app.use('/api/posts', require('./routes/api/posts'));
 
 // Serve static assets in production
 // if (process.env.NODE_ENV === 'production') {
-  // Set static folder
+//   Set static folder
 //   app.use(express.static('client/build'));
 
 //   app.get('*', (req, res) => {
@@ -48,10 +48,6 @@ app.use('/api/posts', require('./routes/api/posts'));
 // Test route
 app.get('/', (req, res) => {
   res.send('API is running')
-})
-
-app.get('/test', (req,res) => {
-  res.send("<h1>This is Working</h1>")
 })
 
 const PORT = process.env.PORT || 5000;
